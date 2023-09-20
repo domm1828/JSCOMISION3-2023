@@ -1,5 +1,6 @@
 'use client'
 import { useThemeContext } from "../context/theme";
+import {Form} from "@/app/components/form"
 
 const Contact = () =>{
     const {color,setColor} = useThemeContext();
@@ -16,6 +17,8 @@ const Contact = () =>{
         <button className="bg-white" onClick={()=>{
             setColor("bg-red-700");
         }}>Cambiar color</button>
+
+        <Form/>
         </div>
     );
 }

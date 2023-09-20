@@ -9,6 +9,9 @@
  */
 import {useRouter, usePathname, useSearchParams} from 'next/navigation'
 import { useThemeContext } from './context/theme';
+import { Form } from './components/form';
+import { InputForm } from './components/input';
+import { FormRegister } from './components/register';
  export default function Page() {
 
   const {color} = useThemeContext();
@@ -17,7 +20,8 @@ import { useThemeContext } from './context/theme';
   const searchParams = useSearchParams();
   const search = searchParams.getAll('hola');
   console.log(search);
-  return <h1 className={color}>
+  return <div className='h-screen'>
+   <h1 className={color}>
   
     Hello, Next.js! 
     <button className='bg-gray-300' onClick={()=>{
@@ -39,4 +43,10 @@ import { useThemeContext } from './context/theme';
     }}>ir About</button>
 
   </h1>
+
+  <Form />
+
+  <FormRegister />
+  
+  </div>
 }
