@@ -1,33 +1,53 @@
 'use client'
 import { PaperAirplaneIcon,XCircleIcon } from '@heroicons/react/24/solid'
-import {useState, useRef} from 'react'
-export const FormRegister = ({contacts,updateContacts}) => {
+import {useState, useRef, useEffect} from 'react'
+export const FormRegister = ({contacts,updateContacts,editContact}) => {
 
     const [name,setName] = useState('');
     const [lastName,setLastName] = useState('');
     const [email,setEmail] = useState('');
     const [phone,setPhone] = useState('');
-    const inputNameRef = useRef(null)
+    const inputNameRef = useRef(null);
+    const [edit,setEdit] = useState(false);
 
     const handleCancel = () =>{
         setName('');
         setLastName('');
         setEmail('');
         setPhone('');
+        setEdit(false);
         inputNameRef.current.focus();
     }
     const handleStore = () =>{
-        const contact = [{
-            name,
-            lastName,
-            email,
-            phone
-        }];
-
-        updateContacts([...contacts,...contact]);
+        if(!edit){
+            const contact = [{
+                name,
+                lastName,
+                email,
+                phone
+            }];
+            updateContacts([...contacts,...contact]);
+        }
+        else{
+            contacts[editContact.index].name=name;  
+            contacts[editContact.index].lastName=lastName;  
+            contacts[editContact.index].email=email;  
+            contacts[editContact.index].phone=phone;  
+            updateContacts([...contacts]);
+        }
         handleCancel();
 
     }
+
+    useEffect(()=>{
+      if(editContact != null){
+        setName(editContact.name);
+        setLastName(editContact.lastName);
+        setPhone(editContact.phone);
+        setEmail(editContact.email);
+        setEdit(true)
+      }
+    },[editContact])
 
     return (<>
     {name} {lastName} {email} {phone}
@@ -118,7 +138,7 @@ export const FormRegister = ({contacts,updateContacts}) => {
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         >
             <PaperAirplaneIcon className='h-6 w-6'/>
-          Save
+          {edit ? 'Edit Data' : 'Save'}
         </button>
       </div>
     </>);
