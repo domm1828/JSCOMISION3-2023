@@ -22,7 +22,7 @@ export const TablePerson = ({ contacts, deleteContact, showData }) => {
       }
 
       useEffect(()=>{
-        setListContact([...contacts]);
+        setListContact([...contacts]); 
         handelSearchFilter();
       },[contacts]);
 
@@ -30,7 +30,7 @@ export const TablePerson = ({ contacts, deleteContact, showData }) => {
     <div  className="w-full text-sm text-left text-gray-500 dark:text-gray-400 m-2">
         <input  
         value={param}
-        onChangeCapture={(e)=>{setParam(e.target.value);}}
+        onChange={(e)=>{setParam(e.target.value);}}
         onKeyUp={handelSearchFilter}
         placeholder='Filter by full names'
         className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
@@ -66,7 +66,7 @@ export const TablePerson = ({ contacts, deleteContact, showData }) => {
                                     <button onClick={()=>{showData(contact,index)}} type='button' className="m-1 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                         <FontAwesomeIcon icon={faPencil} />
                                     </button>
-                                    <button onClick={()=>{deleteContact(index)}} type='button' className="m-1  hover:bg-red-400 px-3 py-2 rounded-md  text-sm font-semibold  text-white bg-red-600">
+                                    <button onClick={()=>{deleteContact(contact.email)}} type='button' className="m-1  hover:bg-red-400 px-3 py-2 rounded-md  text-sm font-semibold  text-white bg-red-600">
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </td>
