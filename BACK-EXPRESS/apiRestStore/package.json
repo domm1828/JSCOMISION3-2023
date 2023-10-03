@@ -1,0 +1,15 @@
+{
+  "name": "apireststore",
+  "version": "0.0.1",
+  "description": "API REST STORE VIRTUAL",
+  "main": "server.js",
+  "scripts": {
+    "start":"nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
