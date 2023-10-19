@@ -20,7 +20,7 @@ app.get('/',(req,res)=>{
 app.post('/prueba',(req,res)=>{
     res.json({message:'Hello Prueba'});
 });
-app.use('/users',isAdmin,userRouter);
+app.use('/users',userRouter);
 
 
 app.listen(port,()=>{

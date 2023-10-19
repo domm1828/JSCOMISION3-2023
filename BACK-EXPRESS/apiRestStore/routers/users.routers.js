@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {getUserAll,createUser,updateUser,deleteUser,filterUser} = require('../controllers/users.controller');
+const validateUser = require('../request/user.request');
 
 
 /**
@@ -12,9 +13,9 @@ const {getUserAll,createUser,updateUser,deleteUser,filterUser} = require('../con
  */
 router.get('/',getUserAll);
 
-router.post('/',createUser);
+router.post('/',validateUser,createUser);
 
-router.delete('/',deleteUser);
+router.delete('/:id',deleteUser);
 
 router.put('/',updateUser);
 
