@@ -17,7 +17,7 @@ router.post('/',validateUser,createUser);
 
 router.delete('/:id',deleteUser);
 
-router.put('/',updateUser);
+router.put('/:id',updateUser);
 
 /**ROUTER DYNAMIC ENVIAR PARAMETROS POR LA URL */
 router.get('/:id/:name',filterUser);

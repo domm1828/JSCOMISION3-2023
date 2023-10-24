@@ -24,7 +24,7 @@ module.exports = {
       },
       password: {
         allowNull: false, 
-        type: Sequelize.STRING(45)
+        type: Sequelize.TEXT
       },
       phone: {
         type: Sequelize.STRING(12)
@@ -41,6 +41,9 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
+        type: Sequelize.DATE
+      },
+      deletedAt :{
         type: Sequelize.DATE
       }
     });
