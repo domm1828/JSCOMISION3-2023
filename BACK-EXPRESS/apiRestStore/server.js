@@ -6,6 +6,14 @@ const userRouter=require('./routers/users.routers')
 const productsRouter = require('./routers/products.routers')
 const isAdmin = require('./middlewares/isAdmin.middleware')
 
+const errorHandler = (error, request, response, next) => { 
+    const status = error.status || 400 
+    response.status(status).json({ "error": true,message:error.message})
+  }
+  const invalidPathHandler = (request, response, next) => {
+    response.status(404)
+    response.json({ "error": true,message:'Invalida la ruta'})
+  }
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -24,7 +32,8 @@ app.post('/prueba',(req,res)=>{
 app.use('/users',userRouter);
 app.use('/products',productsRouter);
 
-
+app.use(invalidPathHandler)
+app.use(errorHandler)
 
 
 app.listen(port,()=>{

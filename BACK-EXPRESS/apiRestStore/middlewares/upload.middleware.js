@@ -20,11 +20,9 @@ const validateTypeFile = (req,file,cb) => {
         cb(null, true)
     }
     else{
-        //const error = new Error('NO SE PUEDE CARGAR ARCHIVOS DE ESTE TIPO '+mimeType);
-        req.uploadError ={
-            error:'NO SE PUEDE CARGAR ARCHIVOS DE ESTE TIPO '+mimeType
-        }
+        
         cb(null, false) 
+        cb(new Error('NO PUEDES SUBIR ARCHIVOS DE ESTE TIPO '+mimeType))
     }
 }
 

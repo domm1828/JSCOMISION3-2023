@@ -14,10 +14,7 @@ const getAll = async (req, resp) => {
 
 const createProduct = async (req, resp) => {
     try {
- 
-        if (req.uploadError) {
-            resp.status(400).json({ 'error': true, message: req.uploadError });
-        }
+  
 
         let body = req.body;
         if (req.file) {
