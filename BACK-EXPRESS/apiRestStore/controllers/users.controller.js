@@ -102,11 +102,6 @@ const deleteUser = async (req, res) => {
         res.status(400).json({ 'error': true, message: e });
     }
 };
+ 
 
-const filterUser = (req, res) => {
-    console.log(req.params);
-    console.log(req.query)
-    res.json({ message: 'ROUTER DYNAMIC', params: req.params, query: req.query });
-}
-
-module.exports = { getUserAll, createUser, updateUser, deleteUser, filterUser }
+module.exports = { getUserAll, createUser, updateUser, deleteUser }

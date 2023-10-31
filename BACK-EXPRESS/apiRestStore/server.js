@@ -3,6 +3,7 @@ const app = express();
 const bodyParser= require('body-parser');
 const port=5500;
 const userRouter=require('./routers/users.routers')
+const productsRouter = require('./routers/products.routers')
 const isAdmin = require('./middlewares/isAdmin.middleware')
 
 
@@ -21,6 +22,9 @@ app.post('/prueba',(req,res)=>{
     res.json({message:'Hello Prueba'});
 });
 app.use('/users',userRouter);
+app.use('/products',productsRouter);
+
+
 
 
 app.listen(port,()=>{
