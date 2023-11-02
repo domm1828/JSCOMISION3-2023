@@ -8,7 +8,8 @@ const getUserAll = async (req, res) => {
         let filter = { 
             attributes: {
                 exclude: ['deletedAt', 'password']
-            }
+            },
+            include:["address"]
         }
         console.log(req.query)
 

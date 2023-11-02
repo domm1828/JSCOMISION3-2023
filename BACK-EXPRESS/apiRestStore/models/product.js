@@ -19,8 +19,19 @@ module.exports = (sequelize, DataTypes) => {
     stock: DataTypes.INTEGER,
     brand: DataTypes.STRING,
     size: DataTypes.STRING,
-    category: DataTypes.STRING,
-    photo:DataTypes.TEXT
+    category: {
+      type:DataTypes.STRING,
+      set(value){
+        this.setDataValue('category',value.toUpperCase())
+      }
+    },
+    photo:DataTypes.TEXT,
+    total:{
+      type:DataTypes.VIRTUAL(DataTypes.FLOAT,['amount','stock']),
+      get(){
+        return `${this.amount*this.stock}`;
+      }
+    }
   }, {
     sequelize,
     modelName: 'product',
