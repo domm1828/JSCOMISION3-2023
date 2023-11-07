@@ -5,6 +5,7 @@ const port=5500;
 const userRouter=require('./routers/users.routers')
 const productsRouter = require('./routers/products.routers')
 const addressRouter = require('./routers/address.routers')
+const loginRouter = require('./routers/login.routers')
 const isAdmin = require('./middlewares/isAdmin.middleware')
 
 const errorHandler = (error, request, response, next) => { 
@@ -33,6 +34,7 @@ app.post('/prueba',(req,res)=>{
 app.use('/users',userRouter);
 app.use('/products',productsRouter);
 app.use('/address',addressRouter);
+app.use('/login',loginRouter);
 
 
 app.use(invalidPathHandler)

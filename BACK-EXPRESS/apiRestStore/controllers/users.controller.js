@@ -103,6 +103,25 @@ const deleteUser = async (req, res) => {
         res.status(400).json({ 'error': true, message: e });
     }
 };
+
+
+const getById = async(req,res)=>{
+    try{
+        let id = req.params.id 
+        let user =  await db.user.findByPk(id,{include:['address']});
+        if(user){
+            res.status(200).json({ 'error': false, data: user, message: 'User Data' });
+        }
+        else{
+            res.status(404).json({ 'error': true, data: null, message: 'Id user not found' }); 
+        }
+    }
+    catch (e) {
+        console.log(e);
+        res.status(400).json({ 'error': true, message: e });
+    }
+
+}
  
 
-module.exports = { getUserAll, createUser, updateUser, deleteUser }
+module.exports = { getUserAll, createUser, updateUser, deleteUser,getById }

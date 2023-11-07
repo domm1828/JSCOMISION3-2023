@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {getUserAll,createUser,updateUser,deleteUser} = require('../controllers/users.controller');
+const {getUserAll,createUser,updateUser,deleteUser, getById} = require('../controllers/users.controller');
 const validateUser = require('../request/user.request');
 
 
@@ -18,6 +18,8 @@ router.post('/',validateUser,createUser);
 router.delete('/:id',deleteUser);
 
 router.put('/:id',updateUser);
+
+router.get('/:id',getById);
 
 /**ROUTER DYNAMIC ENVIAR PARAMETROS POR LA URL */
 //router.get('/:id/:name',filterUser);
