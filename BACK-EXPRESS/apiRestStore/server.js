@@ -6,7 +6,10 @@ const userRouter=require('./routers/users.routers')
 const productsRouter = require('./routers/products.routers')
 const addressRouter = require('./routers/address.routers')
 const loginRouter = require('./routers/login.routers')
+const userMongoRouter = require("./routers/mongo/users.routers")
 const isAdmin = require('./middlewares/isAdmin.middleware')
+
+require("./config/bd.mongo");
 
 const errorHandler = (error, request, response, next) => { 
     const status = error.status || 400 
@@ -36,6 +39,8 @@ app.use('/products',productsRouter);
 app.use('/address',addressRouter);
 app.use('/login',loginRouter);
 
+app.use('/mongo/users',userMongoRouter);
+
 
 app.use(invalidPathHandler)
 app.use(errorHandler)
@@ -44,3 +49,5 @@ app.use(errorHandler)
 app.listen(port,()=>{
     console.log("Server Running http://localhost:"+port);
 })
+
+//rVfVJYlNrHEOTcgM
