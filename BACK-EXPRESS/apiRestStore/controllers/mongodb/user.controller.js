@@ -5,8 +5,31 @@ const User = require("../../models/mongo/user");
 
 const getUserAll = async (req, res) => {
     try {
-
-        let user = await User.find();
+        let filter={}
+        if(req.query.name){
+            /** 
+             * /cadena/ => contenga...
+             * /cadena$/ => donde finalize
+             * /^cadena/ => donde comienze
+             * 
+             * */ 
+            let critero = new RegExp(req.query.name);
+            console.log(critero)
+            console.log(`/j/`)
+            filter = { name : critero, last_name:critero}
+            filters = {
+                $or :[
+                    {name:critero},
+                    {last_name:critero}
+                ]
+            }
+            /** equal $eq
+             *  $lt
+             *  $gt
+             *  $regex
+             */
+        }
+        let user = await User.find(filter,{name:1}).sort({name:-1});
         res.status(200).json({ 'error': false, data: user });
 
     }

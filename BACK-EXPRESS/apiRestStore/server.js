@@ -8,6 +8,7 @@ const productsRouter = require('./routers/products.routers')
 const addressRouter = require('./routers/address.routers')
 const loginRouter = require('./routers/login.routers')
 const userMongoRouter = require("./routers/mongo/users.routers")
+const addressMongoRouter = require("./routers/mongo/address.routers");
 const isAdmin = require('./middlewares/isAdmin.middleware')
 
 require("./config/bd.mongo");
@@ -41,6 +42,7 @@ app.use('/address',addressRouter);
 app.use('/login',loginRouter);
 
 app.use('/mongo/users',userMongoRouter);
+app.use('/mongo/address',addressMongoRouter);
 
 
 app.use(invalidPathHandler)
