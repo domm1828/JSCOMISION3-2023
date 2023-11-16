@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser= require('body-parser');
+const cors = require('cors')
 const port=5500;
 const userRouter=require('./routers/users.routers')
 const productsRouter = require('./routers/products.routers')
@@ -19,7 +20,7 @@ const errorHandler = (error, request, response, next) => {
     response.status(404)
     response.json({ "error": true,message:'Invalida la ruta'})
   }
-
+app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 //app.use(isAdmin);
